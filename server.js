@@ -4,7 +4,11 @@ const cors = require('cors');
 const xlsx = require('xlsx'); // A nova biblioteca mágica para Excel/CSV
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
 
 const upload = multer({ storage: multer.memoryStorage() });
 
