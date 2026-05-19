@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
-const xlsx = require('xlsx'); // A nova biblioteca mágica para Excel/CSV
+const xlsx = require('xlsx'); // A nova biblioteca para Excel/CSV
 
 const app = express();
 app.use(cors({
@@ -70,7 +70,7 @@ app.post('/api/taxas', upload.single('arquivoExtrato'), (req, res) => {
                     cliente = matchNome[1].trim();
                 }
 
-                // Pega só o primeiro nome, exatamente como configuramos antes
+                // Pega só o primeiro nome
                 const clienteCurto = cliente.split(' ')[0];
 
                 // Agrupa os dados
@@ -87,7 +87,7 @@ app.post('/api/taxas', upload.single('arquivoExtrato'), (req, res) => {
             }
         });
 
-        // Formatação idêntica à que já tínhamos para o Front-end
+        // Formatação para o Front-end
         const detalhesPorData = Object.keys(estruturaPorData).map(data => {
             const grupo = estruturaPorData[data];
             const listaClientes = Object.keys(grupo.clientes).map(nome => ({
